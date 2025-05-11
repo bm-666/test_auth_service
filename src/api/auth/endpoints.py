@@ -18,3 +18,5 @@ async def register(user: UserCreate = Body(), session: AsyncSession=Depends(get_
     user.password = hash_password(user.password)
     user_session = UserRepository(session)
     result = await user_session.create(user)
+    print(result)
+# ^Test
