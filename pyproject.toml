@@ -2,7 +2,7 @@
 name = "test-auth-service"
 version = "0.1.0"
 description = ""
-authors = ["bm666 <artem.vostrikov.777@gmail.com>"]
+authors = []
 readme = "README.md"
 
 [tool.poetry.dependencies]
