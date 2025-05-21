@@ -1,19 +1,18 @@
-from fastapi import FastAPI
-#from api.router import routers
-import uvicorn
-from api.auth.endpoints import auth_routers
-app = FastAPI(root_path="/api/v1")
+import asyncio
 
-#for router in routers:
-#    app.include_router(router)
-
-app.include_router(auth_routers)
+from app import main
+from enums.enums import ServiceEnum
+from services.email_notification import notification_run
+from utils.utils import arg_parse
+from workers.send_email import worker_run
 
 if __name__ == "__main__":
-    uvicorn.run(
-        app="main:app",
-        reload=True,
-        port=8000
+    args = arg_parse()
+    if args == ServiceEnum.API:
+        main()
 
-    )
+    elif args == ServiceEnum.WORKER:
+        asyncio.run(worker_run())
 
+    elif args == ServiceEnum.NOTIFICATION:
+        asyncio.run(notification_run())

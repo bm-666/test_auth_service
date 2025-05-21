@@ -1,6 +1,5 @@
 from .auth.endpoints import auth_routers
+from .user.endpoints import user_router
 
-
-routers = [
-    auth_routers
-]
+# Список роутеров
+routers = [auth_routers, user_router]
